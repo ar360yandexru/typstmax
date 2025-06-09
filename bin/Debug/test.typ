@@ -1,0 +1,153 @@
+﻿#let shifr={"32ГП-ЖД-ТМ-КР.Р1"}
+
+#let gost-stamp-big = {
+    place(
+        right + bottom,
+        dx: -5mm,
+        dy: 252mm,
+        table(
+            columns: (10mm, 10mm, 10mm, 10mm, 15mm, 10mm, 70mm, 15mm, 15mm, 20mm),
+            rows: (5mm, 5mm, 5mm, 5mm, 5mm, 5mm, 5mm, 5mm),
+            stroke: 1.2pt + black,
+            align: center + horizon,
+            
+            [],[],[],[],[],[],
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            table.cell(rowspan: 3,colspan: 4, text(size: 20pt)[#shifr]),
+            [],[],[],[],[],[],
+            
+            [#scale(x: 90%)[Изм.]],[#scale(x: 50%)[Кол.Уч.]],[#scale(x: 60%)[№Док.]],[#scale(x: 80%)[Лист]],[Подп.],[#scale(x: 90%)[Дата]],
+            table.cell(colspan: 2,align: left + horizon, text()[Разраб.]),
+            table.cell(colspan: 2, text()[#scale(x:60%)[Фамилия\u{00A0}И.О.]]),[],[],table.cell(rowspan: 5, text(size: 14pt)[Наименование объекта]),
+            [#scale(x: 80%)[Стадия]],[#scale(x: 80%)[Лист]],[Листов],
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            table.cell(colspan: 2,align: left + horizon, text()[ ]),
+            table.cell(colspan: 2,align: left + horizon, text()[ ]),[],[],
+            table.cell( text(size: 16pt)[П]),
+            table.cell( text(size: 16pt)[#context [#counter(page).display()]]),
+            table.cell( text(size: 16pt)[100]),
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            table.cell(colspan: 2,align: left + horizon, text()[ ]),
+            table.cell(colspan: 2, text()[ ]),[],[],
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            table.cell(colspan: 3, rowspan: 3, text(size: 16pt)[ООО "Нли-Ю"]),
+            table.cell(colspan: 2,align: left + horizon, text()[ ]),
+            table.cell(colspan: 2, text()[ ]),[],[],
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            table.cell(colspan: 2,align: left + horizon, text()[Н.контр]),
+            table.cell(colspan: 2, text()[#scale(x:60%)[Фамилия\u{00A0}И.О.]]),[],[],
+        )        
+    )
+    place(
+        left + bottom,
+        dx: -17mm,
+        dy: 212mm,
+        table(
+            columns: (5mm, 7mm),
+            rows: (25mm, 30mm, 25mm),
+            stroke: 1.2pt + black,
+            align: center + horizon,
+            table.cell(rotate(-90deg,text()[#scale(x: 90%)[Взам.инв.\u{00A0}№]])),[],
+            table.cell(rotate(-90deg,text()[Подп.\u{00A0}и\u{00A0}дата])),[],
+            table.cell(rotate(-90deg,text()[#scale(x: 85%)[Инв.\u{00A0}№\u{00A0}подл.]])),[],
+        )        
+    )
+}
+
+#let gost-stamp-mini = {
+    place(
+        right + bottom,
+        dx: -5mm,
+        dy: 277mm,
+        table(
+            columns: (10mm, 10mm, 10mm, 10mm, 15mm, 10mm, 110mm, 10mm),
+            rows: (5mm, 5mm, 5mm),
+            stroke: 1.2pt + black,
+            align: center + horizon,
+            [],[],[],[],[],[],table.cell(rowspan: 3, text(size: 20pt)[#shifr]),[#scale(x: 80%)[Лист]],
+            table.hline(start: 0, end: 6, stroke: 0.4pt + black),
+            [],[],[],[],[],[],table.cell(rowspan: 2, text(size: 20pt)[#context [#counter(page).display()]]),
+            [#scale(x: 90%)[Изм.]],[#scale(x: 50%)[Кол.Уч.]],[#scale(x: 60%)[№Док.]],[#scale(x: 80%)[Лист]],[Подп.],[#scale(x: 90%)[Дата]]
+        )        
+    )
+    place(
+        left + bottom,
+        dx: -17mm,
+        dy: 212mm,
+        table(
+            columns: (5mm, 7mm),
+            rows: (25mm, 30mm, 25mm),
+            stroke: 1.2pt + black,
+            align: center + horizon,
+            table.cell(rotate(-90deg,text()[#scale(x: 90%)[Взам.инв.\u{00A0}№]])),[],
+            table.cell(rotate(-90deg,text()[Подп.\u{00A0}и\u{00A0}дата])),[],
+            table.cell(rotate(-90deg,text()[#scale(x: 85%)[Инв.\u{00A0}№\u{00A0}подл.]])),[],
+        )        
+    )
+
+}
+
+#let gost-frame(content) = {
+    set page(
+        paper: "a4",
+        margin: (left: 25mm, right: 10mm, top: 10mm, bottom: 25mm),
+        
+        background: [
+            #place(
+                right + bottom,
+                dx: -5mm,
+                dy: -5mm,
+                rect( 
+                    width: 185mm, 
+                    height: 287mm, 
+                    stroke: 1.2pt + black,
+                    fill: none,
+                ) 
+            )
+        ],
+        header: context {if counter(page).get().first() == 1 [#gost-stamp-big] else [#gost-stamp-mini]}
+    )
+    set text(
+        font: "Times New Roman",
+        size: 14pt,
+        lang: "ru",
+    )
+    content
+}
+
+#gost-frame[
+= Документ
+Материал - бетон тяжелый B35.\
+Расчетное значение сопротивления бетона осевому сжатию для предельных состояний второй группы принимается по табл. 6.7 
+
+// //МПа:101.97*тс/м^2$
+
+m
+
+$(2549.25 dot "тс")/"м"^2$ // R_b:25*МПа;
+
+m+
+
+$"R"_"b" = (2549.25 dot "тс")/"м"^2$ //R_b:25*МПа;
+
+m=
+
+$"R"_"b"=25 dot "МПа" = (2549.25 dot "тс")/"м"^2$ //R_b:25*МПа;
+
+m+
+
+$"F" = 0.5 dot "м"^2$ //F:0.5*м^2;
+
+m+
+
+$"N" = 1274.625 dot "тс"$ //N:R_b*F;
+
+m=
+
+$"N"="R"_"b" dot "F" = 1274.625 dot "тс"$ //N:R_b*F;
+
+m==
+
+$"N"="R"_"b" dot "F" = ((2549.25 dot "тс")/"м"^2) dot (0.5 dot "м"^2) = 1274.625 dot "тс"$ //N:R_b*F;
+
+]

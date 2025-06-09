@@ -1,0 +1,8 @@
+F:\1.Работа\3. Программы\tmax\bin\Debug\tmax.exe.config
+F:\1.Работа\3. Программы\tmax\bin\Debug\tmax.exe
+F:\1.Работа\3. Программы\tmax\bin\Debug\tmax.pdb
+F:\1.Работа\3. Программы\tmax\obj\Debug\tmax.csproj.AssemblyReference.cache
+F:\1.Работа\3. Программы\tmax\obj\Debug\tmax.csproj.CoreCompileInputs.cache
+F:\1.Работа\3. Программы\tmax\obj\Debug\tmax.exe
+F:\1.Работа\3. Программы\tmax\obj\Debug\tmax.pdb
+F:\1.Работа\3. Программы\tmax\obj\Debug\tmax.exe.config
